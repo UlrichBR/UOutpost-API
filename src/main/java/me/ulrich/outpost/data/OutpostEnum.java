@@ -15,27 +15,23 @@ public class OutpostEnum {
 	}
 	
 	public enum OutpostExtensions {
-		BetterTeams, 
 		CMI, 
 		DecentHolograms, 
-		FactionsUUID, 
 		Holograms, 
 		HolographicDisplays, 
-		SimpleClans, 
 		TAB, 
 		UltimateClans, 
-		UltimateClansLite,
-		IridiumSkyblock,
-		MedievalFactions,
 		AnimatedScoreboard,
-		SuperiorSkyblock2,
-		Lands,
 		SternalBoard,
-		GangsPlus,
-		SaberFactions,
-		FeatherBoard,
-		KingdomsX,
-		TownyAdvanced;
+		FeatherBoard;
+	}
+	
+	public enum TreeBlockType {
+		  LOG, LEAF;
+		}
+	
+	public enum AdvantageList{
+		EXP, MINER_DROP, TIMBER_DROP, MOB_DROP, INCREASES_DAMAGE, MOB_SPAWNER, FISHING_DROP, POTION;
 	}
 	
 	public enum ExtensionsReturn {
