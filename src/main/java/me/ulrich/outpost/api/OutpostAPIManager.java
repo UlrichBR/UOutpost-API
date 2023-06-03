@@ -2,6 +2,7 @@ package me.ulrich.outpost.api;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 
@@ -10,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import me.ulrich.outpost.Outpost;
 import me.ulrich.outpost.data.CubRegionLoc;
+import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
 import me.ulrich.outpost.interfaces.GroupAPI;
@@ -51,36 +53,6 @@ public class OutpostAPIManager implements OutpostAPI {
 	
 	@Override
 	public void addScoreboardImplement(ScoreboardAPI impl) {}
-	
-	@Override
-	public boolean startOutpostEvent(String outpostName) {
-		return false;
-	}
-	
-	@Override
-	public boolean startOutpostEvent(UUID outpostUUID) {
-		return false;
-	}
-	
-	@Override
-	public boolean startOutpostEvent(UUID outpostUUID, Player sender) {
-		return false;
-	}
-	
-	@Override
-	public boolean endOutpostEvent(String outpostName) {
-		return false;
-	}
-	
-	@Override
-	public boolean endOutpostEvent(UUID outpostUUID) {
-		return false;
-	}
-	
-	@Override
-	public boolean endOutpostEvent(UUID outpostUUID, Player winner) {
-		return false;
-	}
 	
 	@Override
 	public boolean hasOutpostStarted(String outpostName) {
@@ -139,6 +111,26 @@ public class OutpostAPIManager implements OutpostAPI {
 	
 	@Override
 	public String parseText(UUID playerUUID, String text) {
+		return null;
+	}
+
+	@Override
+	public List<Entry<UUID, EventData>> getControlPlayers() {
+		return null;
+	}
+
+	@Override
+	public boolean inControlPlayer(Player player) {
+		return false;
+	}
+
+	@Override
+	public boolean inControlPlayer(UUID playerUUID) {
+		return false;
+	}
+
+	@Override
+	public List<Entry<UUID, EventData>> getControlPlayer(UUID playerUUID) {
 		return null;
 	}	
 
