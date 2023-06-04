@@ -181,6 +181,11 @@ public class OutpostAPIManager implements OutpostAPI {
 	@Override
 	public HashMap<String, ConfigAdvantage> getConfigAdvantage() {
 		return null;
+	}
+
+	@Override
+	public Optional<ConfigAdvantage> getConfigAdvanges(String type) {
+		return Optional.empty();
 	}	
 
 
