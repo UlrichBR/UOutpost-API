@@ -12,12 +12,14 @@ public class ConfigAdvantage {
 	private AdvantageList type;
 	private String name;
 	private String icon;
+	private String customData;
 
-	public ConfigAdvantage(AdvantageList type, boolean enabled, String name, String icon) {
+	public ConfigAdvantage(AdvantageList type, boolean enabled, String name, String icon, String customData) {
 		this.setType(type);
 		this.setEnabled(enabled);
 		this.setName(name);
 		this.setIcon(icon);
+		this.setCustomData(customData);
 	}
 
 
@@ -71,6 +73,16 @@ public class ConfigAdvantage {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+
+	public String getCustomData() {
+		return customData;
+	}
+
+
+	public void setCustomData(String customData) {
+		this.customData = customData;
 	}
 
 }
