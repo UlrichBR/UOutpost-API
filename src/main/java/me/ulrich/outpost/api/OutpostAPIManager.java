@@ -179,7 +179,7 @@ public class OutpostAPIManager implements OutpostAPI {
 	}
 
 	@Override
-	public HashMap<AdvantageList, ConfigAdvantage> getConfigAdvantage() {
+	public HashMap<String, ConfigAdvantage> getConfigAdvantage() {
 		return null;
 	}	
 
