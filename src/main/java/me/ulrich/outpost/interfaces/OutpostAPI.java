@@ -16,7 +16,6 @@ import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
-import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
 
 public interface OutpostAPI {
 
@@ -70,7 +69,7 @@ public interface OutpostAPI {
 
 	void checkoutpostAdvantages(UUID outpostUUID);
 
-	Optional<AdvantageData> getAdvantageOutpostByType(UUID outpostUUID, AdvantageList type);
+	Optional<AdvantageData> getAdvantageOutpostByType(UUID outpostUUID, String type);
 
 	List<AdvantageData> getAllOutpostAdvantage(UUID outpostUUID);
 
@@ -83,7 +82,7 @@ public interface OutpostAPI {
 	HashMap<UUID, List<AdvantageData>> getAdvantageData();
 
 	HashMap<String, ConfigAdvantage> getConfigAdvantage();
-	
+
 	Optional<ConfigAdvantage> getConfigAdvanges(String type);
 
 
