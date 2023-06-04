@@ -3,6 +3,7 @@ package me.ulrich.outpost.api;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -10,10 +11,13 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import me.ulrich.outpost.Outpost;
+import me.ulrich.outpost.data.AdvantageData;
+import me.ulrich.outpost.data.ConfigAdvantage;
 import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
+import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
 import me.ulrich.outpost.interfaces.GroupAPI;
 import me.ulrich.outpost.interfaces.HologramAPI;
 import me.ulrich.outpost.interfaces.OutpostAPI;
@@ -131,6 +135,51 @@ public class OutpostAPIManager implements OutpostAPI {
 
 	@Override
 	public List<Entry<UUID, EventData>> getControlPlayer(UUID playerUUID) {
+		return null;
+	}
+
+	@Override
+	public void checkAllOutpostAdvantages() {
+		
+	}
+
+	@Override
+	public void checkoutpostAdvantages(UUID outpostUUID) {
+		
+	}
+
+	@Override
+	public Optional<AdvantageData> getAdvantageOutpostByType(UUID outpostUUID, AdvantageList type) {
+		return Optional.empty();
+	}
+
+	@Override
+	public List<AdvantageData> getAllOutpostAdvantage(UUID outpostUUID) {
+		return null;
+	}
+
+	@Override
+	public void deleteAllOutpostAdvantage(UUID outpostUUID) {
+		
+	}
+
+	@Override
+	public boolean updateAdvantageOutpost(UUID outpostUUID, AdvantageData advantage) {
+		return false;
+	}
+
+	@Override
+	public boolean deleteAdvantage(UUID advantageId) {
+		return false;
+	}
+
+	@Override
+	public HashMap<UUID, List<AdvantageData>> getAdvantageData() {
+		return null;
+	}
+
+	@Override
+	public HashMap<AdvantageList, ConfigAdvantage> getConfigAdvantage() {
 		return null;
 	}	
 
