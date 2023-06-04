@@ -14,12 +14,13 @@ public class ConfigAdvantage {
 	private String icon;
 	private String customData;
 
-	public ConfigAdvantage(AdvantageList type, boolean enabled, String name, String icon, String customData) {
+	public ConfigAdvantage(AdvantageList type, boolean enabled, String name, String icon, List<String> whitelist, String customData) {
 		this.setType(type);
 		this.setEnabled(enabled);
 		this.setName(name);
 		this.setIcon(icon);
 		this.setCustomData(customData);
+		this.setWhitelist(whitelist);
 	}
 
 
