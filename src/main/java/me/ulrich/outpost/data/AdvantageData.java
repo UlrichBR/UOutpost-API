@@ -13,14 +13,16 @@ public class AdvantageData {
 	private List<String> whitelist;
 	private AdvantageList type;
 	private UUID outpostUUID;
+	private String customData;
 
-	public AdvantageData(UUID id, UUID outpostUUID, AdvantageList type, boolean enabled, double multiplier, List<String> whitelist) {
+	public AdvantageData(UUID id, UUID outpostUUID, AdvantageList type, boolean enabled, double multiplier, List<String> whitelist, String customData) {
 		this.setId(id);
 		this.setOutpostUUID(outpostUUID);
 		this.setType(type);
 		this.setEnabled(enabled);
 		this.setMultiplier(multiplier);
 		this.setWhitelist(whitelist);
+		this.setCustomData(customData);
 	}
 
 	public UUID getId() {
@@ -69,5 +71,13 @@ public class AdvantageData {
 
 	public void setOutpostUUID(UUID outpostUUID) {
 		this.outpostUUID = outpostUUID;
+	}
+
+	public String getCustomData() {
+		return customData;
+	}
+
+	public void setCustomData(String customData) {
+		this.customData = customData;
 	}
 }
