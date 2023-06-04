@@ -17,7 +17,6 @@ import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
-import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
 import me.ulrich.outpost.interfaces.GroupAPI;
 import me.ulrich.outpost.interfaces.HologramAPI;
 import me.ulrich.outpost.interfaces.OutpostAPI;
@@ -149,7 +148,7 @@ public class OutpostAPIManager implements OutpostAPI {
 	}
 
 	@Override
-	public Optional<AdvantageData> getAdvantageOutpostByType(UUID outpostUUID, AdvantageList type) {
+	public Optional<AdvantageData> getAdvantageOutpostByType(UUID outpostUUID, String type) {
 		return Optional.empty();
 	}
 
