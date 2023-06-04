@@ -31,7 +31,7 @@ public class OutpostEnum {
 		}
 	
 	public enum AdvantageList{
-		EXP, MINER_DROP, TIMBER_DROP, MOB_DROP, INCREASES_DAMAGE, MOB_SPAWNER, FISHING_DROP, POTION;
+		EXP, MINER_DROP, TIMBER_DROP, MOB_DROP, INCREASES_DAMAGE, MOB_SPAWNER, FISHING_DROP, POTION, CUSTOM;
 	}
 	
 	public enum ExtensionsReturn {
