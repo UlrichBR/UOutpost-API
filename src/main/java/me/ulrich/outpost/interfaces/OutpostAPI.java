@@ -82,7 +82,7 @@ public interface OutpostAPI {
 
 	HashMap<UUID, List<AdvantageData>> getAdvantageData();
 
-	HashMap<AdvantageList, ConfigAdvantage> getConfigAdvantage();
+	HashMap<String, ConfigAdvantage> getConfigAdvantage();
 
 
 
