@@ -3,16 +3,20 @@ package me.ulrich.outpost.interfaces;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import me.ulrich.outpost.data.AdvantageData;
+import me.ulrich.outpost.data.ConfigAdvantage;
 import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
+import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
 
 public interface OutpostAPI {
 
@@ -59,9 +63,26 @@ public interface OutpostAPI {
 	boolean inControlPlayer(Player player);
 
 	boolean inControlPlayer(UUID playerUUID);
-	
+
 	List<Entry<UUID, EventData>> getControlPlayer(UUID playerUUID);
 
+	void checkAllOutpostAdvantages();
+
+	void checkoutpostAdvantages(UUID outpostUUID);
+
+	Optional<AdvantageData> getAdvantageOutpostByType(UUID outpostUUID, AdvantageList type);
+
+	List<AdvantageData> getAllOutpostAdvantage(UUID outpostUUID);
+
+	void deleteAllOutpostAdvantage(UUID outpostUUID);
+
+	boolean updateAdvantageOutpost(UUID outpostUUID, AdvantageData advantage);
+
+	boolean deleteAdvantage(UUID advantageId);
+
+	HashMap<UUID, List<AdvantageData>> getAdvantageData();
+
+	HashMap<AdvantageList, ConfigAdvantage> getConfigAdvantage();
 
 
 
