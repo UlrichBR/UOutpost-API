@@ -3,7 +3,7 @@
 	<groupId>me.ulrich.outpost</groupId>
 	<artifactId>Outpost</artifactId>
 	<name>UltimateOutpost</name>
-	<version>1.0.0-r1</version>
+	<version>1.0.0-r14</version>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
