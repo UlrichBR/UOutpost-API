@@ -20,6 +20,8 @@ public interface GroupAPI {
 	List<UUID> getGroupOnlineMembers(UUID player);
 
 	String getPluginVersion();
+	
+	public List<String> getMembersName(UUID player);
 
 
 }
