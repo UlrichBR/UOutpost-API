@@ -17,6 +17,8 @@ import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
+import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
+import me.ulrich.outpost.data.OutpostEnum.TranslatableKey;
 import me.ulrich.outpost.interfaces.GroupAPI;
 import me.ulrich.outpost.interfaces.HologramAPI;
 import me.ulrich.outpost.interfaces.OutpostAPI;
@@ -187,5 +189,25 @@ public class OutpostAPIManager implements OutpostAPI {
 		return Optional.empty();
 	}	
 
+	@Override
+	public String translate(TranslatableKey trans, String object, String... args) {
+		return null;
+	}
+	
+	@Override
+	@Deprecated
+	public String translateOutReference(String key, String object, String... args) {
+		return null;
+	}
+	
+	@Override
+	public String translateWithFindKey(AdvantageList type, String object) {
+		return null;
+	}
+	
+	@Override
+	public Optional<TranslatableKey> findTranslateType(AdvantageList type) {
+		return Optional.empty();
+	}
 
 }
