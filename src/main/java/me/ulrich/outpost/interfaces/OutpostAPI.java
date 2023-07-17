@@ -16,6 +16,8 @@ import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
+import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
+import me.ulrich.outpost.data.OutpostEnum.TranslatableKey;
 
 public interface OutpostAPI {
 
@@ -84,6 +86,14 @@ public interface OutpostAPI {
 	HashMap<String, ConfigAdvantage> getConfigAdvantage();
 
 	Optional<ConfigAdvantage> getConfigAdvanges(String type);
+
+	String translate(TranslatableKey trans, String object, String... args);
+
+	String translateOutReference(String key, String object, String... args);
+
+	Optional<TranslatableKey> findTranslateType(AdvantageList type);
+
+	String translateWithFindKey(AdvantageList type, String object);
 
 
 
