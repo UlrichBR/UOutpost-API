@@ -12,8 +12,10 @@ import org.bukkit.entity.Player;
 
 import me.ulrich.outpost.data.AdvantageData;
 import me.ulrich.outpost.data.ConfigAdvantage;
+import me.ulrich.outpost.data.ConfigInteractions;
 import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
+import me.ulrich.outpost.data.InteractionsData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
 import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
@@ -94,6 +96,26 @@ public interface OutpostAPI {
 	Optional<TranslatableKey> findTranslateType(AdvantageList type);
 
 	String translateWithFindKey(AdvantageList type, String object);
+
+	void checkAllOutpostInteractions();
+
+	void checkoutpostInteractions(UUID outpostUUID);
+
+	Optional<InteractionsData> getInteractionsOutpostByType(UUID outpostUUID, String type);
+
+	List<InteractionsData> getAllOutpostInteractions(UUID outpostUUID);
+
+	void deleteAllOutpostInteractions(UUID outpostUUID);
+
+	boolean updateInteractionsOutpost(UUID outpostUUID, InteractionsData Interactions);
+
+	boolean deleteInteractions(UUID InteractionsId);
+
+	HashMap<UUID, List<InteractionsData>> getInteractionsData();
+
+	HashMap<String, ConfigInteractions> getConfigInteractions();
+
+	Optional<ConfigInteractions> getConfigInteractions(String type);
 
 
 
