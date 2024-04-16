@@ -13,8 +13,10 @@ import org.bukkit.entity.Player;
 import me.ulrich.outpost.Outpost;
 import me.ulrich.outpost.data.AdvantageData;
 import me.ulrich.outpost.data.ConfigAdvantage;
+import me.ulrich.outpost.data.ConfigInteractions;
 import me.ulrich.outpost.data.CubRegionLoc;
 import me.ulrich.outpost.data.EventData;
+import me.ulrich.outpost.data.InteractionsData;
 import me.ulrich.outpost.data.IslandJoinLeaveData;
 import me.ulrich.outpost.data.OutpostData;
 import me.ulrich.outpost.data.OutpostEnum.AdvantageList;
@@ -207,6 +209,56 @@ public class OutpostAPIManager implements OutpostAPI {
 	
 	@Override
 	public Optional<TranslatableKey> findTranslateType(AdvantageList type) {
+		return Optional.empty();
+	}
+
+	@Override
+	public void checkAllOutpostInteractions() {
+		
+	}
+
+	@Override
+	public void checkoutpostInteractions(UUID outpostUUID) {
+		
+	}
+
+	@Override
+	public Optional<InteractionsData> getInteractionsOutpostByType(UUID outpostUUID, String type) {
+		return Optional.empty();
+	}
+
+	@Override
+	public List<InteractionsData> getAllOutpostInteractions(UUID outpostUUID) {
+		return null;
+	}
+
+	@Override
+	public void deleteAllOutpostInteractions(UUID outpostUUID) {
+		
+	}
+
+	@Override
+	public boolean updateInteractionsOutpost(UUID outpostUUID, InteractionsData Interactions) {
+		return false;
+	}
+
+	@Override
+	public boolean deleteInteractions(UUID InteractionsId) {
+		return false;
+	}
+
+	@Override
+	public HashMap<UUID, List<InteractionsData>> getInteractionsData() {
+		return null;
+	}
+
+	@Override
+	public HashMap<String, ConfigInteractions> getConfigInteractions() {
+		return null;
+	}
+
+	@Override
+	public Optional<ConfigInteractions> getConfigInteractions(String type) {
 		return Optional.empty();
 	}
 
