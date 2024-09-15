@@ -19,8 +19,9 @@ public class OutpostData {
 	private GeneralSettings settings;
 	private int captureTime;
 	private LootSettings lootType;
+	private PersistentEventData peristentData;
 
-	public OutpostData(String name, UUID uuid, Location loc1, Location loc2, List<String> commands, String icon, int captureTime, KeySettings keySettings, ProximitySettings proximitySettings, GeneralSettings settings, LootSettings lootType) {
+	public OutpostData(String name, UUID uuid, Location loc1, Location loc2, List<String> commands, String icon, int captureTime, KeySettings keySettings, ProximitySettings proximitySettings, GeneralSettings settings, LootSettings lootType, PersistentEventData peristentData) {
 		this.setName(name);
 		this.setUuid(uuid);
 		this.setLoc1(loc1);
@@ -32,6 +33,8 @@ public class OutpostData {
 		this.setProximitySettings(proximitySettings);
 		this.setSettings(settings);
 		this.setLootType(lootType);
+		this.setPeristentData(peristentData);
+		
 	}
 
 	public String getName() {
@@ -122,6 +125,14 @@ public class OutpostData {
 
 	public void setLootType(LootSettings lootType) {
 		this.lootType = lootType;
+	}
+
+	public PersistentEventData getPeristentData() {
+		return peristentData;
+	}
+
+	public void setPeristentData(PersistentEventData peristentData) {
+		this.peristentData = peristentData;
 	}
 
 
