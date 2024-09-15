@@ -1,18 +1,20 @@
 package me.ulrich.outpost.data;
 
+import java.util.UUID;
+
 import org.bukkit.entity.Player;
 
 
 
 public class EventData {
 
-	private Player playerControl;
+	private UUID playerControl;
 	private Long startedControl;
 	private Long startedEvent;
 	private Player preControl;
 	private Long startedPre;
 
-	public EventData(Player playerControl, Player preControl, Long startedControl, Long startedPre, Long startedEvent) {
+	public EventData(UUID playerControl, Player preControl, Long startedControl, Long startedPre, Long startedEvent) {
 		this.setPlayerControl(playerControl);
 		this.setStartedControl(startedControl);
 		this.setStartedEvent(startedEvent);
@@ -22,11 +24,11 @@ public class EventData {
 
 
 
-	public Player getPlayerControl() {
+	public UUID getPlayerControl() {
 		return playerControl;
 	}
 
-	public void setPlayerControl(Player playerControl) {
+	public void setPlayerControl(UUID playerControl) {
 		this.playerControl = playerControl;
 	}
 
