@@ -1,4 +1,4 @@
-name: Release Automática de Extensão (TribeCraft)
+name: Release Automática de API (TribeCraft)
 #Extension: R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_ENDPOINT, R2_BUCKET, DISCORD_WEBHOOK, DISCORD_RELEASES_WEBHOOK
 
 on:
@@ -10,13 +10,15 @@ env:
   MODULE_ID: "ultimateoutpost" # ID da extensão para as pastas
   PROJECT_FOLDER: "api/ultimateoutpost" # Pasta base no R2
   MIN_JAVA_VERSION: "21"
+  # --- NOVAS CONFIGURAÇÕES DINÂMICAS PARA O MANIFESTO ---
+  API_DESCRIPTION: "API de Integração Oficial"
+  API_DEPENDENCIES: '["UltimateOutpost"]' # Mantenha a sintaxe de array JSON em string simples
   DISCORD_EMBED_TRIBE: "https://api.tribecraft.com.br/src/logo.png"
   DISCORD_EMBED_THUMBNAIL: "https://api.tribecraft.com.br/src/outpost_thumbnail.png"
-  # Configuração do Post de Release
-  UPDATE_TITLE: "🧩 Ultimate Outpost API: ${MAVEN_NAME}"
+  # Configuração base limpa para evitar quebras de variáveis globais
+  UPDATE_TITLE: "🔌 Ultimate Outpost API"
   UPDATE_MESSAGE: |
     [B]Eco:[/B] Ultimate Outpost
-    [B]Update:[/B] ${MAVEN_VERSION}
     [B]Status:[/B] Stable and submitted to the API Repository.
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -51,7 +53,7 @@ jobs:
                  "username": "TribeCraft Build",
                  "avatar_url": "${{ env.DISCORD_EMBED_THUMBNAIL }}",
                  "embeds": [{
-                   "description": "⏳ **Iniciando Build da Extensão: ${{ env.MAVEN_NAME }}** `'"$VERSION_TAG"'`\nPreparando ambiente...",
+                   "description": "⏳ **Iniciando Build da API: ${{ env.MAVEN_NAME }}** `'"$VERSION_TAG"'`\nPreparando ambiente...",
                    "color": 16776960
                  }]
                }' \
@@ -76,7 +78,7 @@ jobs:
                  "username": "TribeCraft Build",
                  "avatar_url": "${{ env.DISCORD_EMBED_THUMBNAIL }}",
                  "embeds": [{
-                   "description": "📦 **Extensão Compilada: ${{ env.MAVEN_NAME }}**\n`${{ env.JAR_NAME }}`\nEnviando para o R2/AWS/GIT...",
+                   "description": "📦 **API Compilada: ${{ env.MAVEN_NAME }}**\n`${{ env.JAR_NAME }}`\nEnviando para o R2/AWS/GIT...",
                    "color": 3447003
                  }]
                }' \
@@ -90,18 +92,18 @@ jobs:
           # latest.json
           echo "{\"latest\": \"$VERSION\"}" > manifests/latest.json
           
-          # version.json (Estrutura original mantida)
+          # version.json (Agora 100% dinâmico baseado no Maven e Env)
           cat > manifests/${VERSION}.json <<EOF
           {
             "id": "${{ env.MODULE_ID }}",
-            "name": "Vault Extension",
+            "name": "${{ env.MAVEN_NAME }}",
             "version": "$VERSION",
             "channel": "stable",
-            "description": "Integração com Vault",
+            "description": "${{ env.API_DESCRIPTION }}",
             "authors": ["Ulrich"],
-            "core": { "min": "9.0.0" },
+            "core": { "min": "1.0.0" },
             "java": { "min": ${{ env.MIN_JAVA_VERSION }} },
-            "dependencies": ["Vault", "UltimateClans"],
+            "dependencies": ${{ env.API_DEPENDENCIES }},
             "optionalDependencies": [],
             "file": {
               "name": "${{ env.JAR_NAME }}",
@@ -109,11 +111,11 @@ jobs:
               "sha256": "${{ env.JAR_HASH }}"
             },
             "download": {
-              "path": "/extensions/${{ env.MODULE_ID }}/files/${{ env.JAR_NAME }}"
+              "path": "/api/${{ env.MODULE_ID }}/files/${{ env.JAR_NAME }}"
             },
             "release": {
               "date": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
-              "changelog": ["Release automática"]
+              "changelog": ["Release automática via GitHub Actions"]
             }
           }
           EOF
@@ -126,11 +128,11 @@ jobs:
           BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
           # Upload do JAR
-          aws s3 cp "${{ env.JAR_FILE }}" "s3://$BUCKET/extensions/${{ env.MODULE_ID }}/files/${{ env.JAR_NAME }}" --endpoint-url=$ENDPOINT
+          aws s3 cp "${{ env.JAR_FILE }}" "s3://$BUCKET/api/${{ env.MODULE_ID }}/files/${{ env.JAR_NAME }}" --endpoint-url=$ENDPOINT
           
           # Upload dos Manifestos
-          aws s3 cp manifests/latest.json "s3://$BUCKET/extensions/${{ env.MODULE_ID }}/latest.json" --endpoint-url=$ENDPOINT
-          aws s3 cp manifests/${{ github.ref_name }}.json "s3://$BUCKET/extensions/${{ env.MODULE_ID }}/versions/${{ github.ref_name }}.json" --endpoint-url=$ENDPOINT
+          aws s3 cp manifests/latest.json "s3://$BUCKET/api/${{ env.MODULE_ID }}/latest.json" --endpoint-url=$ENDPOINT
+          aws s3 cp manifests/${{ github.ref_name }}.json "s3://$BUCKET/api/${{ env.MODULE_ID }}/versions/${{ github.ref_name }}.json" --endpoint-url=$ENDPOINT
 
       - name: Criar Release no GitHub
         uses: softprops/action-gh-release@v2
@@ -138,7 +140,7 @@ jobs:
         with:
           files: ${{ env.JAR_FILE }}
           generate_release_notes: true
-          name: "Extension Release ${{ github.ref_name }}"
+          name: "API Release ${{ github.ref_name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -146,7 +148,7 @@ jobs:
         if: success()
         run: |
           curl -s -X POST -H "Content-Type: application/json" \
-               -d '{"content": "🧩 Extensão - **${{ env.MAVEN_NAME }}** `${{ env.MAVEN_VERSION }}` enviada ao R2/AWS/GIT!"}' \
+               -d '{"content": "🔌 API - **${{ env.MAVEN_NAME }}** `${{ env.MAVEN_VERSION }}` enviada ao R2/AWS/GIT!"}' \
                ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Postar Notificação de Release (Elegante)
@@ -160,25 +162,47 @@ jobs:
           MAVEN_VERSION: ${{ env.MAVEN_VERSION }}
           TRIBE: ${{ env.DISCORD_EMBED_TRIBE }}
           THUMB: ${{ env.DISCORD_EMBED_THUMBNAIL }}
+          GITHUB_REPO_URL: "${{ github.server_url }}/${{ github.repository }}"
         run: |
           import os, json, requests
-          m_name, m_ver = os.getenv("MAVEN_NAME", ""), os.getenv("MAVEN_VERSION", "")
+          
+          m_name = os.getenv("MAVEN_NAME", "")
+          m_ver = os.getenv("MAVEN_VERSION", "")
+          repo_url = os.getenv("GITHUB_REPO_URL", "")
+          
           def clean_text(text):
               if not text: return ""
-              return text.replace("${MAVEN_NAME}", m_name).replace("${MAVEN_VERSION}", m_ver).replace("[B]", "**").replace("[/B]", "**").replace("[I]", "*").replace("[/I]", "*").strip()
+              text = text.replace("[B]", "**").replace("[/B]", "**")
+              text = text.replace("[I]", "*").replace("[/I]", "*")
+              return text.strip()
+          
+          # Formata o Título dinamicamente sem estourar escopo de variáveis globais
+          final_title = f"🔌 {m_name}"
+          
+          # Monta a estrutura da mensagem injetando a versão obtida do Maven e a URL do Github de forma automatizada
+          msg_linhas = [
+              f"**Eco:** Ultimate Outpost",
+              f"**Update:** v{m_ver}",
+              clean_text(os.getenv("RAW_MESSAGE")).split("\n")[-1], # Captura o status do bloco original
+              f"**Url:** {repo_url}"
+          ]
+          final_description = "\n".join(msg_linhas)
+          
           payload = {
               "username": "TribeCraft Build",
               "avatar_url": os.getenv("TRIBE"),
               "embeds": [{
-                  "title": clean_text(os.getenv("RAW_TITLE")),
-                  "description": clean_text(os.getenv("RAW_MESSAGE")),
-                  "color": 10181046, # Roxo/Purple para Extensões
+                  "title": final_title,
+                  "description": final_description,
+                  "color": 10181046, # Roxo/Purple para APIs/Extensões
                   "thumbnail": {"url": os.getenv("THUMB")},
-                  "footer": {"text": f"Extensão: {m_name} | TribeCraft Studios", "icon_url": os.getenv("TRIBE")}
+                  "footer": {"text": f"API: {m_name} | TribeCraft Studios", "icon_url": os.getenv("TRIBE")}
               }]
           }
+          
           webhook = os.getenv("WEBHOOK_URL")
-          if webhook: requests.post(webhook, json=payload)
+          if webhook: 
+              requests.post(webhook, json=payload)
 
       - name: Notificar Falha (Discord)
         if: failure()
@@ -187,7 +211,7 @@ jobs:
                -d '{
                  "username": "TribeCraft Build",
                  "embeds": [{
-                   "title": "❌ Erro na Extensão",
+                   "title": "❌ Erro na API",
                    "description": "Falha ao compilar `${{ env.MAVEN_NAME }}`.\n[Ver Erro](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
                    "color": 15158332
                  }]
