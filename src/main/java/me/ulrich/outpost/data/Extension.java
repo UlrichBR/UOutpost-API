@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.ulrich.outpost.extension.ExtensionClassloader;
