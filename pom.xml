@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.ulrichbr</groupId>
 	<artifactId>UltimateOutpost</artifactId>
-	<version>1.26.3-R3-RELEASE</version>
+	<version>1.26.3-R4-RELEASE</version>
 	<name>UltimateOutpost</name>
 	<description>UOutpost API V1.</description>
 	<url>https://github.com/UlrichBR/UOutpost-API</url>
@@ -67,7 +67,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.13.0</version>
 				<configuration>
-					<release>${java.version}</release>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<failOnError>true</failOnError>
 				</configuration>
@@ -163,12 +164,10 @@
 		</resources>
 	</build>
 	<repositories>
-		<!-- Spigot -->
 		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
-		<!-- holographicdisplays, VAULT -->
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
@@ -179,7 +178,6 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<!--Spigot -->
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>

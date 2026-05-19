@@ -9,7 +9,7 @@ on:
 env:
   MODULE_ID: "ultimateoutpost" # ID da extensão para as pastas
   PROJECT_FOLDER: "api/ultimateoutpost" # Pasta base no R2
-  MIN_JAVA_VERSION: "21"
+  MIN_JAVA_VERSION: "17" # Java 17 para permitir compilação retrocompatível com Java 8
   # --- NOVAS CONFIGURAÇÕES DINÂMICAS PARA O MANIFESTO ---
   API_DESCRIPTION: "API de Integração Oficial"
   API_DEPENDENCIES: '["UltimateOutpost"]' # Mantenha a sintaxe de array JSON em string simples
@@ -44,7 +44,6 @@ jobs:
           java-version: ${{ env.MIN_JAVA_VERSION }}
           distribution: 'temurin'
           cache: 'maven'
-          # --- ADICIONE ESTAS LINHAS ABAIXO ---
           server-id: central
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
@@ -63,14 +62,14 @@ jobs:
                }' \
                ${{ secrets.DISCORD_WEBHOOK }}
 
-      # --- NOVA ETAPA: CONFIGURAÇÃO DO GPG PARA ASSINAR O ARTEFATO ---
+      # --- CONFIGURAÇÃO DO GPG PARA ASSINAR O ARTEFATO ---
       - name: Configurar Chave GPG
         uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      # --- ETAPA ADAPTADA: COMPILA, EXECUTA O FLATTEN, ASSINA E ENVIA PARA O MAVEN CENTRAL ---
+      # --- ETAPA DE COMPILAÇÃO E IMPLEMENTAÇÃO ---
       - name: Build e Deploy no Maven Central
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
@@ -111,7 +110,7 @@ jobs:
           # latest.json
           echo "{\"latest\": \"$VERSION\"}" > manifests/latest.json
           
-          # version.json (Agora 100% dinâmico baseado no Maven e Env)
+          # version.json
           cat > manifests/${VERSION}.json <<EOF
           {
             "id": "${{ env.MODULE_ID }}",
