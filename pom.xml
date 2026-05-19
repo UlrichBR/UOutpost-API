@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.ulrichbr</groupId>
 	<artifactId>UltimateOutpost</artifactId>
-	<version>1.26.3-R5-RELEASE</version>
+	<version>1.26.3-R6-RELEASE</version>
 	<name>UltimateOutpost</name>
 	<description>UOutpost API V1.</description>
 	<url>https://github.com/UlrichBR/UOutpost-API</url>
