@@ -4,7 +4,7 @@ The official integration API for the UltimateOutpost ecosystem. Built to provide
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ulrichbr/UltimateOutpost?color=blue&label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.ulrichbr/UltimateOutpost)
 [![](https://jitpack.io/v/UlrichBR/UOutpost-API.svg)](https://jitpack.io/#UlrichBR/UOutpost-API)
-[![Java Version](https://img.shields.io/badge/Java-17%20%2F%2021-orange?logo=openjdk)](https://pom.xml)
+[![Java Version](https://img.shields.io/badge/Java-8-orange?logo=openjdk)](https://pom.xml)
 
 ---
 
